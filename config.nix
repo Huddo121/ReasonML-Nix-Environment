@@ -1,8 +1,5 @@
 rec {
     pkgs = import <nixpkgs> {};
-    # oPkgs = pkgs.ocamlPackages;
-    # globalBuildInputs = [ pkgs.merlin oPkgs.merlin pkgs.ocaml ];
-
     nodejs = pkgs.nodejs-10_x;
     myNodePackages = let np = import ./nix/bs-platform/default.nix { inherit pkgs nodejs; };
     in np // {
@@ -12,7 +9,9 @@ rec {
                 substituteInPlace ./scripts/install.js \
                     --replace "var ninja_bin_output = path.join(root_dir, 'lib', 'ninja.exe')" \
                             "var ninja_bin_output = '${pkgs.ninja}/bin/ninja'"
+
                 substituteInPlace ./scripts/install.js --replace "function provideNinja" "function hideNinja"
+
                 substituteInPlace ./scripts/install.js --replace "provideNinja" "//hideNinja"
             '';
 

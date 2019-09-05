@@ -3,7 +3,7 @@ let
 in
   with config;
   pkgs.mkShell {
-      buildInputs = [ myNodePackages.bs-platform ];
+      buildInputs = [ myNodePackages.bs-platform nodejs ];
       shellHook = ''
         export PATH="`pwd`/node_modules/.bin:$PATH"
       '';
