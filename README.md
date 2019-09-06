@@ -1,3 +1,12 @@
+# ReasonML-Nix-Environment
+A nix environment for getting up and running with ReasonML.
+
+It doesn't work...
+
+Current state of affairs is that commands like `bsb -init` seem to run just fine, but actually trying to do anything
+that invokes ninja is currently failing because it's looking for ninja under
+`/nix/store/<hash>-node_bs-platform-5.0.6/lib/node_modules/bs-platform/lib/ninja.exe`. Unsure if where exactly this is
+being picked up from.
 
 ## Steps taken
 * `nix-shell -p nodejs nodePackages.node2nix`
